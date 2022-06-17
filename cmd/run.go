@@ -57,12 +57,12 @@ func runMain(fileName string, jiraBaseLink string) {
 
 	tickets := reg.FindAllString(string(data), -1)
 
-	var ticketLinks []string
+	ticketLinks := map[string][]interface{}{}
 	for _, t := range tickets {
-		ticketLinks = append(ticketLinks, fmt.Sprintf("%s/%s", jiraBaseLink, t))
+		ticketLinks[fmt.Sprintf("%s/%s", jiraBaseLink, t)] = []interface{}{}
 	}
 
-	for _, l := range ticketLinks {
+	for l := range ticketLinks {
 		fmt.Println(l)
 	}
 }
